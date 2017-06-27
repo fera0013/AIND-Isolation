@@ -34,9 +34,15 @@ def custom_score(game, player):
         The heuristic value of the current game state to the specified player.
     """
     # TODO: finish this function!
-    number_of_active_players_moves = len(game.get_legal_moves())
-    number_of_opponents_moves = len(game.get_legal_moves(game.get_opponent(player)))
-    return float(number_of_active_players_moves - number_of_opponents_moves)
+    if game.is_loser(player):
+       return float("-inf")
+
+    if game.is_winner(player):
+        return float("inf")
+
+    number_of_active_players_moves = len(game.get_legal_moves(player))
+    number_of_oponentes_players_moves = len(game.get_legal_moves(game.get_opponent(player)))
+    return float(number_of_active_players_moves - number_of_oponentes_players_moves)
 
 
 def custom_score_2(game, player):
@@ -61,9 +67,17 @@ def custom_score_2(game, player):
     float
         The heuristic value of the current game state to the specified player.
     """
-    number_of_active_players_moves = len(game.get_legal_moves())
-    number_of_opponents_moves = len(game.get_legal_moves(game.get_opponent(player)))
-    return float(number_of_active_players_moves - 2*number_of_opponents_moves)
+    if game.is_loser(player):
+       return float("-inf")
+
+    if game.is_winner(player):
+        return float("inf")
+
+    number_of_active_players_moves = len(game.get_legal_moves(player))
+    number_of_opponent_players_moves = len(game.get_legal_moves(game.get_opponent(player)))
+
+    return number_of_active_players_moves - 1.5 * number_of_opponent_players_moves
+
 
 
 def custom_score_3(game, player):
@@ -89,7 +103,16 @@ def custom_score_3(game, player):
         The heuristic value of the current game state to the specified player.
     """
     # TODO: finish this function!
-    return float(len(game.get_legal_moves()))
+    if game.is_loser(player):
+        return float("-inf")
+    
+    if game.is_winner(player):
+        return float("inf")
+
+    number_of_active_players_moves = len(game.get_legal_moves(player))
+    number_of_opponents_players_moves = len(game.get_legal_moves(game.get_opponent(player)))
+
+    return number_of_active_players_moves^2 - number_of_opponents_players_moves^2
 
 
 class IsolationPlayer:
@@ -391,3 +414,7 @@ class AlphaBetaPlayer(IsolationPlayer):
 
         # TODO: finish this function!
         return self.max_value(game, depth, alpha, beta)[1]
+
+  
+    
+  
