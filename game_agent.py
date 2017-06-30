@@ -36,14 +36,11 @@ def custom_score(game, player):
     # TODO: finish this function!
     if game.is_loser(player):
        return float("-inf")
-
     if game.is_winner(player):
         return float("inf")
-
     number_of_active_players_moves = len(game.get_legal_moves(player))
     number_of_oponentes_players_moves = len(game.get_legal_moves(game.get_opponent(player)))
     return float(number_of_active_players_moves - number_of_oponentes_players_moves)
-
 
 def custom_score_2(game, player):
     """Calculate the heuristic value of a game state from the point of view
@@ -69,16 +66,11 @@ def custom_score_2(game, player):
     """
     if game.is_loser(player):
        return float("-inf")
-
     if game.is_winner(player):
         return float("inf")
-
     number_of_active_players_moves = len(game.get_legal_moves(player))
     number_of_opponent_players_moves = len(game.get_legal_moves(game.get_opponent(player)))
-
     return number_of_active_players_moves - 1.5 * number_of_opponent_players_moves
-
-
 
 def custom_score_3(game, player):
     """Calculate the heuristic value of a game state from the point of view
@@ -105,15 +97,11 @@ def custom_score_3(game, player):
     # TODO: finish this function!
     if game.is_loser(player):
         return float("-inf")
-    
     if game.is_winner(player):
         return float("inf")
-
     number_of_active_players_moves = len(game.get_legal_moves(player))
     number_of_opponents_players_moves = len(game.get_legal_moves(game.get_opponent(player)))
-
-    return number_of_active_players_moves^2 - number_of_opponents_players_moves^2
-
+    return number_of_active_players_moves - number_of_opponents_players_moves^2
 
 class IsolationPlayer:
     """Base class for minimax and alphabeta agents -- this class is never
