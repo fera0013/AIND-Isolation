@@ -102,3 +102,4 @@ ENV/
 *.zip
 isolation-result-75949.json
 *.config
+*.json
